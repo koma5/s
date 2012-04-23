@@ -6,8 +6,17 @@
 $(function(){
   $('#search').keydown(function(){
     setTimeout(function() {
-      $('#prov-output').text($('#search').val());
-      window.history.replaceState(null, '?q='+$('#search').val(), '?q='+$('#search').val());
+    	var searchTerm = $('#search').val();
+    	if (searchTerm != '')
+    	{
+			$('#prov-output').text(searchTerm);
+			window.history.replaceState(null, '?q='+searchTerm, '?q='+searchTerm);
+		}
+		else
+		{
+			$('#prov-output').text("nothing");
+			window.history.replaceState(null, '.', '.');
+		}
     }, 50);
   });
 });

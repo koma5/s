@@ -11,7 +11,7 @@
        More info: h5bp.com/i/378 -->
   <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
 
-  <title></title>
+  <title>yourlsSearch</title>
   <meta name="description" content="">
 
   <!-- Mobile viewport optimized: h5bp.com/viewport -->
@@ -27,21 +27,29 @@
   <!-- All JavaScript at the bottom, except this Modernizr build.
        Modernizr enables HTML5 elements & feature detects for optimal performance.
        Create your own custom Modernizr build: www.modernizr.com/download/ -->
-  <script src="js/vendor/modernizr-2.5.3.min.js"></script>
+  <!--<script src="js/vendor/modernizr-2.5.3.min.js"></script>-->
 </head>
 <body>
   <!-- Prompt IE 6 users to install Chrome Frame. Remove this if you support IE 6.
        chromium.org/developers/how-tos/chrome-frame-getting-started -->
   <!--[if lt IE 7]><p class=chromeframe>Your browser is <em>ancient!</em> <a href="http://browsehappy.com/">Upgrade to a different browser</a> or <a href="http://www.google.com/chromeframe/?redirect=true">install Google Chrome Frame</a> to experience this site.</p><![endif]-->
+<div class="container">
 
-  
-  <form id="searchform" action="./">
+  <div class="row">
 
-    <input id="search" type="text" name="q" class="search-query" placeholder="nothing will be shown if your don't type...">
-    <input id="submit" type="submit" class="btn" value="Search">
-  </form>
-<div id="prov-output"></div>
+      <form id="searchform" action="./">
+        <div class="span10">
+          <input id="search" type="text" style="width:95%; height:25px; font-size:23px;" name="q" class="search-query" placeholder="nothing will be shown if your don't type...">
+        </div>
+        <div class="span2">
+        <input id="submit" type="submit" class="btn btn-large btn-info" style="width:100%;" value="SEARCH">
+      </div>
+      </form>
 
+      <div id="prov-output"></div>
+    
+  </div>
+</div>
 
 
   <!-- JavaScript at the bottom for fast page loading: http://developer.yahoo.com/performance/rules.html#js_bottom -->
@@ -56,12 +64,12 @@
   <!-- end scripts -->
 
   <!-- Asynchronous Google Analytics snippet. Change UA-XXXXX-X to be your site's ID.
-       mathiasbynens.be/notes/async-analytics-snippet -->
+       mathiasbynens.be/notes/async-analytics-snippet 
   <script>
     var _gaq=[['_setAccount','UA-XXXXX-X'],['_trackPageview']];
     (function(d,t){var g=d.createElement(t),s=d.getElementsByTagName(t)[0];
     g.src=('https:'==location.protocol?'//ssl':'//www')+'.google-analytics.com/ga.js';
     s.parentNode.insertBefore(g,s)}(document,'script'));
-  </script>
+  </script>-->
 </body>
 </html>
