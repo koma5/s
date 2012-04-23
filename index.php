@@ -4,6 +4,22 @@
 <!--[if IE 7]>    <html class="no-js lt-ie9 lt-ie8" lang="en"> <![endif]-->
 <!--[if IE 8]>    <html class="no-js lt-ie9" lang="en"> <![endif]-->
 <!--[if gt IE 8]><!--> <html class="no-js" lang="en"> <!--<![endif]-->
+
+
+
+<?php
+
+  if (isset($_REQUEST['q']))$searchTerm = $_REQUEST['q'];
+  else $searchTerm = NULL;
+
+
+?>
+
+
+
+
+
+
 <head>
   <meta charset="utf-8">
 
@@ -39,14 +55,14 @@
 
       <form id="searchform" action="./">
         <div class="span10">
-          <input id="search" type="text" style="width:95%; height:25px; font-size:23px;" name="q" class="search-query" placeholder="nothing will be shown if your don't type...">
+          <input id="search" type="text" style="width:95%; height:25px; font-size:23px;" name="q" class="search-query" placeholder="nothing will be shown if you don't type..." value="<?=$searchTerm?>">
         </div>
         <div class="span2">
         <input id="submit" type="submit" class="btn btn-large btn-info" style="width:100%;" value="SEARCH">
       </div>
       </form>
 
-      <div id="prov-output"></div>
+      <?php include('queries.php'); ?>
     
   </div>
 </div>
