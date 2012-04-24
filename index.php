@@ -62,9 +62,14 @@
       </div>
       </form>
 
-      <?php include('queries.php'); ?>
-    
   </div>
+
+  <div class="row">
+    <div class="span12">
+    <?php include('queries.php'); ?>
+</div>
+  </div>
+
 </div>
 
 

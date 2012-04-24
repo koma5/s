@@ -15,23 +15,42 @@ $sql = mysql_query("
 	OR url LIKE '%$searchTerm%'
 	LIMIT 100");
 
-print "<table><tr><th>shortlink</th><th>url</th><th>title</th></tr>";
+print "<table><tr><th>5th.li/</th><th>stats</th><th>favicon</th><th>url</th><th>title</th></tr>";
 
 while($row = mysql_fetch_array($sql))
 {
-	print "<tr><td>".$row['keyword']."</td><td>".myTrim($row['url'], 24)."</td><td>".$row['title']."</td></tr>";
+	$printUrl = myTrim(remove_http($row['url']), 34);
+	$linkUrl = $row['url'];
+
+	$shortLinkUrl = 'http://5th.li/'.$row['keyword'];
+	$shortLink = $row['keyword'];
+
+	$parsedUrl = parse_url($row['url']);
+	$faviconUrl = 'http://www.google.com/s2/favicons?domain='.$parsedUrl['host'];
+
+	print '<tr><td><a href="'.$shortLinkUrl.'">'.$shortLink.'</a></td><td><a href="'.$shortLinkUrl.'+">+</a></td><td><img src="'.$faviconUrl.'" /></td><td><a title="'.$linkUrl.'" href="'.$linkUrl.'">'.$printUrl.'</a></td><td>'.$row['title'].'</td></tr>';
 }
-
-
-function myTrim($inputString, $length, $stringTrailer = '[...')
-{
-	$reallength = $length - strlen($stringTrailer) - strlen($inputString);
-
-	$output = substr($inputString, 0, $length) . $stringTrailer;
-	return $output;
-}
-
 print "</table>";
 
+
+function myTrim($inputString, $length, $stringTrailer = '[...]')
+{
+	if($length >= strlen($stringTrailer) + strlen($inputString))
+	{
+		return $inputString;
+	}
+	else
+	{
+		$length = $length - strlen($stringTrailer) - strlen($inputString);
+		$output = substr($inputString, 0, $length) . $stringTrailer;
+		return $output;
+	}
+}
+
+
+function remove_http($url='') 
+{
+	return preg_replace("/^https?:\/\/(.+)$/i","\\1", $url);
+}
 
 ?>
