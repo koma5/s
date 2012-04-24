@@ -27,7 +27,7 @@
        More info: h5bp.com/i/378 -->
   <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
 
-  <title>yourlsSearch</title>
+  <title>5th.li/s</title>
   <meta name="description" content="">
 
   <!-- Mobile viewport optimized: h5bp.com/viewport -->
