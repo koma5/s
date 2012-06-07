@@ -55,7 +55,7 @@
 
       <form id="searchform" action="./">
         <div class="span10">
-          <input id="search" type="text" style="width:95%; height:25px; font-size:23px;" name="q" class="search-query" placeholder="nothing will be shown if you don't type..." value="<?=$searchTerm?>">
+          <input id="search" type="text" style="width:95%; height:25px; font-size:23px;" name="q" autocomplete="off" placeholder="nothing will be shown if you don't type..." value="<?=$searchTerm?>">
         </div>
         <div class="span2">
         <input id="submit" type="submit" class="btn btn-large btn-info" style="width:100%;" value="SEARCH">
@@ -65,9 +65,9 @@
   </div>
 
   <div class="row">
-    <div class="span12">
-    <?php include('queries.php'); ?>
-</div>
+    <div id="results" class="span12">
+      <?php include('queries.php'); ?>
+    </div>
   </div>
 
 </div>

@@ -1,6 +1,11 @@
-<?php 
+<?php
+
+
 
 include('lib/db.class.php');
+
+if (isset($_REQUEST['q']))$searchTerm = $_REQUEST['q'];
+else $searchTerm = NULL;
 
 if($searchTerm != NULL)
 {
@@ -16,7 +21,7 @@ if($searchTerm != NULL)
 		OR url LIKE '%$searchTerm%'
 		LIMIT 100");
 
-	print "<table><tr><th>5th.li/</th><th>stats</th><th>favicon</th><th>url</th><th>title</th></tr>";
+	print "<table><tr><th>5th.li/</th><th>favicon</th><th>url</th><th>title</th></tr>";
 
 	while($row = mysql_fetch_array($sql))
 	{
@@ -29,7 +34,7 @@ if($searchTerm != NULL)
 		$parsedUrl = parse_url($row['url']);
 		$faviconUrl = 'http://www.google.com/s2/favicons?domain='.$parsedUrl['host'];
 
-		print '<tr><td><a href="'.$shortLinkUrl.'">'.$shortLink.'</a></td><td><a href="'.$shortLinkUrl.'+">+</a></td><td><img src="'.$faviconUrl.'" /></td><td><a title="'.$linkUrl.'" href="'.$linkUrl.'">'.$printUrl.'</a></td><td>'.$row['title'].'</td></tr>';
+		print '<tr><td><a href="'.$shortLinkUrl.'">'.$shortLink.'</a></td><td><a href="'.$shortLinkUrl.'+"><img src="'.$faviconUrl.'" /></a></td><td><a title="'.$linkUrl.'" href="'.$linkUrl.'">'.$printUrl.'</a></td><td>'.$row['title'].'</td></tr>';
 	}
 	print "</table>";
 }
