@@ -2,35 +2,41 @@
 
 include('lib/db.class.php');
 
-
-
-$myDB = new Database();
-$myDB->connect();
-
-$sql = mysql_query("
-	SELECT *
-	FROM yourls_url AS l
-	WHERE keyword LIKE '%$searchTerm%'
-	OR title LIKE '%$searchTerm%'
-	OR url LIKE '%$searchTerm%'
-	LIMIT 100");
-
-print "<table><tr><th>5th.li/</th><th>stats</th><th>favicon</th><th>url</th><th>title</th></tr>";
-
-while($row = mysql_fetch_array($sql))
+if($searchTerm != NULL)
 {
-	$printUrl = myTrim(remove_http($row['url']), 34);
-	$linkUrl = $row['url'];
 
-	$shortLinkUrl = 'http://5th.li/'.$row['keyword'];
-	$shortLink = $row['keyword'];
+	$myDB = new Database();
+	$myDB->connect();
 
-	$parsedUrl = parse_url($row['url']);
-	$faviconUrl = 'http://www.google.com/s2/favicons?domain='.$parsedUrl['host'];
+	$sql = mysql_query("
+		SELECT *
+		FROM yourls_url AS l
+		WHERE keyword LIKE '%$searchTerm%'
+		OR title LIKE '%$searchTerm%'
+		OR url LIKE '%$searchTerm%'
+		LIMIT 100");
 
-	print '<tr><td><a href="'.$shortLinkUrl.'">'.$shortLink.'</a></td><td><a href="'.$shortLinkUrl.'+">+</a></td><td><img src="'.$faviconUrl.'" /></td><td><a title="'.$linkUrl.'" href="'.$linkUrl.'">'.$printUrl.'</a></td><td>'.$row['title'].'</td></tr>';
+	print "<table><tr><th>5th.li/</th><th>stats</th><th>favicon</th><th>url</th><th>title</th></tr>";
+
+	while($row = mysql_fetch_array($sql))
+	{
+		$printUrl = myTrim(remove_http($row['url']), 34);
+		$linkUrl = $row['url'];
+
+		$shortLinkUrl = 'http://5th.li/'.$row['keyword'];
+		$shortLink = $row['keyword'];
+
+		$parsedUrl = parse_url($row['url']);
+		$faviconUrl = 'http://www.google.com/s2/favicons?domain='.$parsedUrl['host'];
+
+		print '<tr><td><a href="'.$shortLinkUrl.'">'.$shortLink.'</a></td><td><a href="'.$shortLinkUrl.'+">+</a></td><td><img src="'.$faviconUrl.'" /></td><td><a title="'.$linkUrl.'" href="'.$linkUrl.'">'.$printUrl.'</a></td><td>'.$row['title'].'</td></tr>';
+	}
+	print "</table>";
 }
-print "</table>";
+else
+{
+	echo "<h1>NULL</h1>";
+}
 
 
 function myTrim($inputString, $length, $stringTrailer = '[...]')
